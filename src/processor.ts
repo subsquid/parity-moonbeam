@@ -43,12 +43,12 @@ interface TransferEvent {
 
 function getTransferEvent(ctx: EventHandlerContext): TransferEvent {
   const event = new BalancesTransferEvent(ctx);
-  if (event.isV172) {
-    const [from, to, amount] = event.asV172;
+  if (event.isV900) {
+    const [from, to, amount] = event.asV900;
     return { from, to, amount };
   }
-  if (event.isV176) {
-    return event.asV176;
+  if (event.isV1201) {
+    return event.asV1201;
   }
   throw new VersionNotSupported("balances.Transfer", {
     blockHeight: ctx.block.height,

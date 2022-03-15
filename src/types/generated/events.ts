@@ -1,7 +1,7 @@
 import assert from 'assert'
 import {EventContext, Result, deprecateLatest} from './support'
-import * as v172 from './v172'
-import * as v176 from './v176'
+import * as v1201 from './v1201'
+import * as v900 from './v900'
 
 export class BalancesTransferEvent {
   constructor(private ctx: EventContext) {
@@ -11,40 +11,40 @@ export class BalancesTransferEvent {
   /**
    * Transfer succeeded. \[from, to, value\]
    */
-  get isV172(): boolean {
-    return this.ctx._chain.getEventHash('balances.Transfer') === 'dad2bcdca357505fa3c7832085d0db53ce6f902bd9f5b52823ee8791d351872c'
+  get isV900(): boolean {
+    return this.ctx._chain.getEventHash('balances.Transfer') === 'dfcae516f053c47e7cb49e0718f01587efcb64cea4e3baf4c6973a29891f7841'
   }
 
   /**
    * Transfer succeeded. \[from, to, value\]
    */
-  get asV172(): [v172.AccountId32, v172.AccountId32, bigint] {
-    assert(this.isV172)
+  get asV900(): [v900.H160, v900.H160, bigint] {
+    assert(this.isV900)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
 
   /**
    * Transfer succeeded.
    */
-  get isV176(): boolean {
-    return this.ctx._chain.getEventHash('balances.Transfer') === '0ffdf35c495114c2d42a8bf6c241483fd5334ca0198662e14480ad040f1e3a66'
+  get isV1201(): boolean {
+    return this.ctx._chain.getEventHash('balances.Transfer') === '23222c59f2992c12387568241620899d2d399ab9027595daca8255637f62ece3'
   }
 
   /**
    * Transfer succeeded.
    */
-  get asV176(): {from: v176.AccountId32, to: v176.AccountId32, amount: bigint} {
-    assert(this.isV176)
+  get asV1201(): {from: v1201.AccountId20, to: v1201.AccountId20, amount: bigint} {
+    assert(this.isV1201)
     return this.ctx._chain.decodeEvent(this.ctx.event)
   }
 
   get isLatest(): boolean {
     deprecateLatest()
-    return this.isV176
+    return this.isV1201
   }
 
-  get asLatest(): {from: v176.AccountId32, to: v176.AccountId32, amount: bigint} {
+  get asLatest(): {from: v1201.AccountId20, to: v1201.AccountId20, amount: bigint} {
     deprecateLatest()
-    return this.asV176
+    return this.asV1201
   }
 }

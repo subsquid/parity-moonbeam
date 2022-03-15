@@ -32,8 +32,8 @@ versions.json:
 
 explore:
 	@npx squid-substrate-metadata-explorer \
-		--chain wss://parallel.api.onfinality.io/public-ws \
-		--archive https://parallel.indexer.gc.subsquid.io/v4/graphql \
+		--chain wss://moonbeam.api.onfinality.io/public-ws \
+		--archive https://moonbeam-beta.indexer.gc.subsquid.io/v4/graphql \
 		--out ./typegen/versions.json
 
 
